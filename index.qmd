@@ -1,0 +1,35 @@
+---
+title: "Mukesh"
+image: images/Mukesh.jpeg
+about:
+  template: trestles
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/MUKESHRAJMAHENDRAN
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/mukeshmahendran
+    - icon: clipboard-data
+      text: Kaggle
+      href: https://www.kaggle.com/mukeshrajm
+    - icon: brush
+      text: Blog
+      href: https://datasherlock.blogspot.com/
+---
+## Bio
+**Data Scientist** at **Cubera** with expertise in *Python, Postgres, Pandas, NumPy, Scikit-learn, Fastai, TensorFlow, PyTorch, Quarto, and FastAPI*. 
+
+Currently a **Kaggle Notebook Expert**, trying to improve my skills with kaggle community. Skilled in extracting insights from complex datasets and developing scalable **machine learning solutions**. Committed to innovation, continuous learning, and driving impactful insights.
+
+## Education
+
+Kumaguru college of technology | Computer Science Engineering | Jul 2014 - April 2018
+
+IIT-M Advanced Programming & Master DataScience | Guvi | Jul 2021 - Dec 2021
+
+## Experience
+
+Cubera | Data Scientist | Aug 2022 - present
+
+Freelance| Data Scientist | Jan - Jul 2022
