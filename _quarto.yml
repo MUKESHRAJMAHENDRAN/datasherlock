@@ -17,9 +17,9 @@ website:
       - icon: github
         menu:
           - text: Source Code
-            url:  https://code.com # Link souce code of repo 
+            url:  https://github.com/MUKESHRAJMAHENDRAN/datasherlock
           - text: Report a Bug
-            url:  https://bugs.com # Lisnk issue of the repo
+            url:  https://github.com/MUKESHRAJMAHENDRAN/datasherlock/issues
 
 format:
   html:
