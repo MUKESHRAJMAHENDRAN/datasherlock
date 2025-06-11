@@ -6,7 +6,8 @@ website:
   title: "dataSherlock"
   navbar:
     right:
-      - about.qmd
+      - text: About
+        href: about.qmd
       - icon: github
         href: https://github.com/MUKESHRAJMAHENDRAN
       - icon: twitter

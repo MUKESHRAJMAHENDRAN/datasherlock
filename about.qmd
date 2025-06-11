@@ -1,10 +1,10 @@
 ---
-title: "About"
+title: "Hi 👋 I’m Mukesh"
 image: profile.jpg
 about:
-  template: solana
+  template: jolla
   # image-shape: round
-  image-width: 17em
+  image-width: 18em
   links:
     - icon: twitter
       text: Twitter
@@ -17,19 +17,32 @@ about:
       href: https://github.com/MUKESHRAJMAHENDRAN
 ---
 
-I'm Mukesh I'm a self-taught passionate data scientist from India 🇮🇳
+---
 
-**About me**
+### 🚀 About Me
 
-- 💼 Ex Data Scientist at [Cubera](https://cubera.co/), [Visionet](https://www.visionet.com/) .Currently AI Engineer at [Sena](https://sena.services/).
- 
-- 📝  Write a [blog](https://datasherlock.blogspot.com/) about  ``` topics = [ "Python", "Data Exploration", "Data visualization", "Feature Engineering", "Machine learning", Deep learning] ```
-  
-- I am currently [kaggle notebook expert](https://www.kaggle.com/mukeshrajm) trying to improve my skill with the kaggle community.
-  
-- 💬 Ask me about anything [here](https://github.com/MUKESHRAJMAHENDRAN/MUKESHRAJMAHENDRAN/issues).
-  
--  ❤️ I love writing code, learn new things and implementing it. Love to contribute to Open Source, contributed to opersource library called Narwhals.
-  
--  Currently building my own website with quarto. This site is for person like me who lost in abundance of knowlege in the internet for learning data science.
+ 💼 **Current**: AI Engineer at [Sena](https://sena.services/)  
+  🔙 **Past**: Data Scientist at [Cubera](https://cubera.co/) and [Visionet](https://www.visionet.com/)
 
+ 📝 **Blogger** at [DataSherlock](https://datasherlock.blogspot.com/), writing about:
+  ```topics = ["Python", "Data Exploration", "Visualization", "Feature Engineering", "Machine Learning", "Deep Learning"]
+  ```
+
+ 🏅 **Kaggle Notebook Expert**:
+  Active on [Kaggle](https://www.kaggle.com/mukeshrajm), constantly learning and contributing to the data science community.
+
+ 💬 **Open for Questions**:
+  Reach out or start a discussion [here](https://github.com/MUKESHRAJMAHENDRAN/MUKESHRAJMAHENDRAN/issues) — happy to connect!
+
+ ❤️ **What Drives Me**:
+  I enjoy writing clean code, learning new technologies, and building meaningful projects.
+  I'm also passionate about contributing to open source — including libraries like `Narwhals`.
+
+  🌐  Currently building my own website with quarto. This site is for person like me who lost in abundance of knowlege in the internet for learning data science.
+
+---
+
+
+Thanks for visiting! 🚀 Feel free to explore, learn, and connect.
+
+---
