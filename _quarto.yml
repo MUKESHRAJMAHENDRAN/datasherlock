@@ -17,6 +17,8 @@ format:
       - lux
       - brand
     css: styles.css
+    mermaid:
+      theme: neutral
 
 
 
