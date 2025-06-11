@@ -1,5 +1,6 @@
 project:
   type: website
+  output-dir: docs
 
 website:
   title: "dataSherlock"
@@ -13,7 +14,7 @@ website:
 format:
   html:
     theme:
-      - cosmo
+      - lux
       - brand
     css: styles.css
 

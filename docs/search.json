@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Predicting the future isn’t magic, it’s Artificial Intelligence.",
+    "section": "",
+    "text": "Understanding the Git and Github (Everything you need to know to get started)\n\n\n\nVersion Control System\n\nDev\n\nData Science\n\nGit\n\nCode\n\n\n\n\n\n\n\n\n\nJun 11, 2025\n\n\nMukesh\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "posts/git_github/git_github.html",
+    "href": "posts/git_github/git_github.html",
+    "title": "Understanding the Git and Github (Everything you need to know to get started)",
+    "section": "",
+    "text": "Version Control System simply means we can go the back to version we want to. There are Various version Control system available such as git, CVS, Subversion, Perforce, Bazaar, and so on.\n\n\n\n\n\nflowchart LR\nZ[v0]--&gt;A[v1]--&gt;B(v2)--&gt;C(v3)\nmaster[Your here] --&gt;C\n\n\n\n\n\n\nWe are at the version 3 we can go back to we version 2 and made the changes come back. It will be very usefull when we collaborating with many people.\n\n\n\n\n\nflowchart LR\nZ[v0]--&gt;A[v1]--&gt;B(v2)--&gt;C(v3)\nmaster[Your here] --&gt;B"
+  },
+  {
+    "objectID": "posts/git_github/git_github.html#version-control-system",
+    "href": "posts/git_github/git_github.html#version-control-system",
+    "title": "Understanding the Git and Github (Everything you need to know to get started)",
+    "section": "",
+    "text": "Version Control System simply means we can go the back to version we want to. There are Various version Control system available such as git, CVS, Subversion, Perforce, Bazaar, and so on.\n\n\n\n\n\nflowchart LR\nZ[v0]--&gt;A[v1]--&gt;B(v2)--&gt;C(v3)\nmaster[Your here] --&gt;C\n\n\n\n\n\n\nWe are at the version 3 we can go back to we version 2 and made the changes come back. It will be very usefull when we collaborating with many people.\n\n\n\n\n\nflowchart LR\nZ[v0]--&gt;A[v1]--&gt;B(v2)--&gt;C(v3)\nmaster[Your here] --&gt;B"
+  },
+  {
+    "objectID": "posts/git_github/git_github.html#git-and-github",
+    "href": "posts/git_github/git_github.html#git-and-github",
+    "title": "Understanding the Git and Github (Everything you need to know to get started)",
+    "section": "Git and Github",
+    "text": "Git and Github\nWe are going to see Git and github(largest host for git repository)\n\nThree states of git\n\nModified (Files you are Modified)\nstaged (Modified file are taked out to store in local database)\ncommit (Staged files are stored in local database)\n\n\n\nInstallation\n\nInstall the git based on your operating system.\nCreate a github account.\n\nIt is Straight forward, if you are having problem in installing feel free to ask.\n\nInitial Config\n$ git config --global user.name \"Your Name\"\n$ git config --global user.email yourname@example.com\nYou can also config your editor, if you just starting out start with notepad for better understanding of concepts."
+  },
+  {
+    "objectID": "posts/git_github/git_github.html#git-basics",
+    "href": "posts/git_github/git_github.html#git-basics",
+    "title": "Understanding the Git and Github (Everything you need to know to get started)",
+    "section": "Git Basics",
+    "text": "Git Basics\nIf your are beginner feel free to follow along with me. Once your comfortable you can create your own repository and test it out what you are learned. repository(repo) - Nothing but a folder\n\nBasic Commands\n\nls -&gt; list the file or folder in that region\nls -a -&gt;(list the hidden files) it work on the linux\nmkdir  -&gt; create a new folder\ncd -&gt; change the directory or get in to the directory\nrm -&gt; , rm -r  recursively remove everything\n\n\n\nGit Initialization, stage, commit\n\nGit Initialization\n\nmkdir understand_git -&gt; Create a folder with name understand_git\ncd understand_git -&gt; get into the understand_git folder\ngit init -&gt; initialize the git in the folder\n\nls -a -&gt; if you want to look out what what it initialized is .git(It work on linux)\n\n\n\n\nGit stage\n\nCreate a README.md file in the repo. And write a sentence like this is about understanding git.\ngit status -&gt; Check the status of file. It shows on master branch and README.md file as untracked file.\ngit add . or git add * (If you want to particular file -&gt; git add README.md)\n\n\n\nGit Commit\n\nCheck the status(git status) untracked file become become tracked(File colour changed from red to green)\ngit commit -m “Inital commit” (-m is the message for our local storage in case we want to go back it will be very usefull)\ngit status -&gt; Branch is clean nothing to commit\n\ngit status -s (Short status for the track)\n\n\n\n\n\nIgnoring files/folder\nThere are few file/folder like cache, log, etc. We don’t need to maintain history or track for that type of file and we can ignore from tracking by creating .gitignore file and add the name of the file or folder to ignore. We can also use Regular expression to ignore file\n\n\nStaged and Unstaged changes\n\nlet’s open a README.md file and add the second line like git is a powerfull tool\ngit status will show the file is modified\ngit diff -&gt; Shows the what is modified from the last commit\ngit diff –staged or git diff –cached -&gt; What are change in the staged file difference from the previous commit\n\n\n\nSkipping the staging area.\n\nIf you also skip the staging area and directly stage and commit\n\nAdd a line in README.md like github is amazing.\ngit commit -am “Let’s skip the stagging area” or git commit -a -m “Let’s skip the stagging area”.\nUse it carefully sometime we don’t want to add every changes in every file.\n\n\n\n\nUnstage the staged file\n\nIf you are accidently staged some file and want to unstage the file\n\ncreate a text file called file_1.txt and add a line like nature is amazing\ngit add . -&gt; it adds the file to the staging area and you accidently added that file for staging\ngit rm –cached file_1.txt -&gt; it will unstage the file_1.txt\nyou can also do it by (git reset file_1.txt)\n\n\n\n\nLog\n\ngit log -&gt; Gives the commit history(It is very much usefull when we want to roll back)\ngit log –stat -&gt; Gives the commit history with changes\n\n\n\nUndoing the commit message\n\nIf you mess up with your commit message you can go back and edit the message.\nOpen README.md add text in a new line like i love programming\ngit add .\ngit commit -m “added”\nyou just added the message as added so i want message as added a new line\ngit commit –amend -&gt; It will open message prompt to re-enter your commit message.\n\n\n\nUnmodifying a modified file\n\nOpen README.md add text in a new line like Python is great\nCheck the git status, README.md is modified\ngit checkout – README.md -&gt; it will roll back the modified file.\n\n\n\nGit restore\n\ngit restore –staged file_name -&gt; Unstage the staged file\ngit restore file_name -&gt; Unmodifying the modified file\n\n\nWhat to use?\n\ngit reset or git cached or git restore - I will suggest git restore because it is powerfull than others"
+  },
+  {
+    "objectID": "posts/git_github/git_github.html#git-branching-and-github",
+    "href": "posts/git_github/git_github.html#git-branching-and-github",
+    "title": "Understanding the Git and Github (Everything you need to know to get started)",
+    "section": "Git Branching and Github",
+    "text": "Git Branching and Github\n\nGithub Intro\n\nGithub largest host of git repo- Hope you already created that account if your are following this.\nFor practice purpose i will create a understanding_git repo in my github you can fork it follow along and i will merge your pull request.\nGithub uses main instead of master branch from few year back you can also configure from name as main/master\n\n\n\nGit branching\nBefore deep diving in to the branches let understand few basics. - You are not able to directly commit on the project of the team/Organization. - First you need a copy of the project in your repo just click the fork of this project at the right side here. - Once it forked copy the url from the code dropdown or repo url. - git clone url -&gt; This command will copy the repo in the local.\n\n\n\n\n\n\nCreate a new branch Once cloned\n\n\n\n\nNever ever commit on the master/main branch\nNew branch new issue\n\n\n\n\n\nContribution to a project\n\nI test the every command so anything not working create an issue here\ngit remote upstream https://github.com/MUKESHRAJMAHENDRAN/understanding_git (This will add origin of the forked repo)\ngit branch inspired_line -&gt; Create a new branch\ngit checkout inspired_line\nadd your line on the quote.txt\ngit add .\ngit commit -m “Added the line”\ngit checkout main\ngit pull upstream main -&gt; If any change are commited on the parent main branch that with sync with main branch of the local\ngit merge inspired_line (It open message prompt and type what merge message is all about)\ngit push origin main\nOnce pushed go to your repo of understanding_git from the contribution create a open pull request i will merge it\nOnce merged delete the branch name\ngit branch -d inspired_line\n\nThis blog is just a fuel to kick to get starting there are so much things to learn from git and github like Git Rebase, merge conflict, cherry pick, git on the server, distribution of git, branch Workflow, etc.We will learn in the upcomming post."
+  }
+]
