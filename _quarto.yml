@@ -8,9 +8,9 @@ website:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
+        href: https://github.com/MUKESHRAJMAHENDRAN
       - icon: twitter
-        href: https://twitter.com
+        href: https://x.com/mukeshmahendran
 format:
   html:
     theme:

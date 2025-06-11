@@ -2,18 +2,34 @@
 title: "About"
 image: profile.jpg
 about:
-  template: jolla
+  template: solana
+  # image-shape: round
+  image-width: 17em
   links:
     - icon: twitter
       text: Twitter
-      href: https://twitter.com
+      href: https://x.com/mukeshmahendran
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://www.linkedin.com/in/mukesh-raj-77a760211/
     - icon: github
       text: Github
-      href: https://github.com
-
+      href: https://github.com/MUKESHRAJMAHENDRAN
 ---
 
-About this blog
+I'm Mukesh I'm a self-taught passionate data scientist from India 🇮🇳
+
+**About me**
+
+- 💼 Ex Data Scientist at [Cubera](https://cubera.co/), [Visionet](https://www.visionet.com/) .Currently AI Engineer at [Sena](https://sena.services/).
+ 
+- 📝  Write a [blog](https://datasherlock.blogspot.com/) about  ``` topics = [ "Python", "Data Exploration", "Data visualization", "Feature Engineering", "Machine learning", Deep learning] ```
+  
+- I am currently [kaggle notebook expert](https://www.kaggle.com/mukeshrajm) trying to improve my skill with the kaggle community.
+  
+- 💬 Ask me about anything [here](https://github.com/MUKESHRAJMAHENDRAN/MUKESHRAJMAHENDRAN/issues).
+  
+-  ❤️ I love writing code, learn new things and implementing it. Love to contribute to Open Source, contributed to opersource library called Narwhals.
+  
+-  Currently building my own website with quarto. This site is for person like me who lost in abundance of knowlege in the internet for learning data science.
+
