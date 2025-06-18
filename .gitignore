@@ -1,3 +1,4 @@
 /.quarto/
 quarto-1.7.31-linux-amd64.deb
 _site
+.*
