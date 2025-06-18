@@ -1,19 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Predicting the future isn’t magic, it’s Artificial Intelligence.",
-    "section": "",
-    "text": "Understanding the Git and Github (Everything you need to know to get started)\n\n\n\nVersion Control System\n\nDev\n\nData Science\n\nGit\n\nCode\n\n\n\n\n\n\n\n\n\nJun 11, 2025\n\n\nMukesh\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Hi 👋 I’m Mukesh",
-    "section": "",
-    "text": "🚀 About Me\n💼 Current: AI Engineer at Sena\n🔙 Past: Data Scientist at Cubera and Visionet\n📝 Blogger at DataSherlock, writing about: topics = [\"Python\", \"Data Exploration\", \"Visualization\", \"Feature Engineering\", \"Machine Learning\", \"Deep Learning\"]\n🏅 Kaggle Notebook Expert: Active on Kaggle, constantly learning and contributing to the data science community.\n💬 Open for Questions: Reach out or start a discussion here — happy to connect!\n❤️ What Drives Me: I enjoy writing clean code, learning new technologies, and building meaningful projects. I’m also passionate about contributing to open source — including libraries like Narwhals.\n🌐 Currently building my own website with quarto. This site is for person like me who lost in abundance of knowlege in the internet for learning data science."
-  },
-  {
     "objectID": "posts/git_github/git_github.html",
     "href": "posts/git_github/git_github.html",
     "title": "Understanding the Git and Github (Everything you need to know to get started)",
@@ -47,5 +33,19 @@
     "title": "Understanding the Git and Github (Everything you need to know to get started)",
     "section": "Git Branching and Github",
     "text": "Git Branching and Github\n\nGithub Intro\n\nGithub largest host of git repo- Hope you already created that account if your are following this.\nFor practice purpose i will create a understanding_git repo in my github you can fork it follow along and i will merge your pull request.\nGithub uses main instead of master branch from few year back you can also configure from name as main/master\n\n\n\nGit branching\nBefore deep diving in to the branches let understand few basics. - You are not able to directly commit on the project of the team/Organization. - First you need a copy of the project in your repo just click the fork of this project at the right side here. - Once it forked copy the url from the code dropdown or repo url. - git clone url -&gt; This command will copy the repo in the local.\n\n\n\n\n\n\nCreate a new branch Once cloned\n\n\n\n\nNever ever commit on the master/main branch\nNew branch new issue\n\n\n\n\n\nContribution to a project\n\nI test the every command so anything not working create an issue here\ngit remote upstream https://github.com/MUKESHRAJMAHENDRAN/understanding_git (This will add origin of the forked repo)\ngit branch inspired_line -&gt; Create a new branch\ngit checkout inspired_line\nadd your line on the quote.txt\ngit add .\ngit commit -m “Added the line”\ngit checkout main\ngit pull upstream main -&gt; If any change are commited on the parent main branch that with sync with main branch of the local\ngit merge inspired_line (It open message prompt and type what merge message is all about)\ngit push origin main\nOnce pushed go to your repo of understanding_git from the contribution create a open pull request i will merge it\nOnce merged delete the branch name\ngit branch -d inspired_line\n\nThis blog is just a fuel to kick to get starting there are so much things to learn from git and github like Git Rebase, merge conflict, cherry pick, git on the server, distribution of git, branch Workflow, etc.We will learn in the upcomming post."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Predicting the future isn’t magic, it’s Artificial Intelligence.",
+    "section": "",
+    "text": "Understanding the Git and Github (Everything you need to know to get started)\n\n\n\nVersion Control System\n\nDev\n\nData Science\n\nGit\n\nCode\n\n\n\n\n\n\n\n\n\nJun 11, 2025\n\n\nMukesh\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Hi 👋 I’m Mukesh",
+    "section": "",
+    "text": "🚀 About Me\n💼 Current: AI Engineer at Sena\n🔙 Past: Data Scientist at Cubera and Visionet\n📝 Blogger at DataSherlock, writing about: topics = [\"Python\", \"Data Exploration\", \"Visualization\", \"Feature Engineering\", \"Machine Learning\", \"Deep Learning\"]\n🏅 Kaggle Notebook Expert: Active on Kaggle, constantly learning and contributing to the data science community.\n💬 Open for Questions: Reach out or start a discussion here — happy to connect!\n❤️ What Drives Me: I enjoy writing clean code, learning new technologies, and building meaningful projects. I’m also passionate about contributing to open source — including libraries like Narwhals.\n🌐 Currently building my own website with quarto. This site is for person like me who lost in abundance of knowlege in the internet for learning data science."
   }
 ]
