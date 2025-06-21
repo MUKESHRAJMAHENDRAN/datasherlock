@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-e05b10a33b060cc5e8d9f624c63cd02d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-f3a1c0f5093fcba51cbce2171b442cb7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -824,8 +824,8 @@ R² tells how well your model fits the data compared to a baseline.</p>
 <li>Starts with random centers and iteratively assigns points to the nearest cluster center.</li>
 <li>Goal: Minimize the sum of squared distances between points and their cluster centers.</li>
 </ul>
-<p>✅ Pros: Simple, fast<br>
-❌ Cons: Needs <code>k</code> specified, assumes spherical clusters</p>
+<p>Pros: Simple, fast<br>
+Cons: Needs <code>k</code> specified, assumes spherical clusters</p>
 </section>
 <section id="hierarchical-clustering" class="level3">
 <h3 class="anchored" data-anchor-id="hierarchical-clustering">2. <strong>Hierarchical Clustering</strong></h3>
@@ -837,8 +837,8 @@ R² tells how well your model fits the data compared to a baseline.</p>
 <li><strong>Divisive</strong> (top-down): starts with all points in one cluster, splits recursively.</li>
 </ul></li>
 </ul>
-<p>✅ Pros: No need to specify number of clusters<br>
-❌ Cons: Computationally expensive for large datasets</p>
+<p>Pros: No need to specify number of clusters<br>
+Cons: Computationally expensive for large datasets</p>
 </section>
 <section id="dbscan-density-based-spatial-clustering-of-applications-with-noise" class="level3">
 <h3 class="anchored" data-anchor-id="dbscan-density-based-spatial-clustering-of-applications-with-noise">3. <strong>DBSCAN (Density-Based Spatial Clustering of Applications with Noise)</strong></h3>
@@ -846,8 +846,8 @@ R² tells how well your model fits the data compared to a baseline.</p>
 <li>Groups points that are close together and marks outliers as noise.</li>
 <li>Doesn’t require specifying number of clusters.</li>
 </ul>
-<p>✅ Pros: Handles noise well, finds arbitrarily shaped clusters<br>
-❌ Cons: Sensitive to parameter settings</p>
+<p>Pros: Handles noise well, finds arbitrarily shaped clusters<br>
+Cons: Sensitive to parameter settings</p>
 </section>
 <section id="gaussian-mixture-models-gmms" class="level3">
 <h3 class="anchored" data-anchor-id="gaussian-mixture-models-gmms">4. <strong>Gaussian Mixture Models (GMMs)</strong></h3>
@@ -855,8 +855,8 @@ R² tells how well your model fits the data compared to a baseline.</p>
 <li>Assumes data comes from a mixture of Gaussian distributions.</li>
 <li>Uses probabilities to assign points to clusters.</li>
 </ul>
-<p>✅ Pros: Soft clustering (gives probability of belonging to each cluster)<br>
-❌ Cons: Slower than K-Means</p>
+<p>Pros: Soft clustering (gives probability of belonging to each cluster)<br>
+Cons: Slower than K-Means</p>
 </section>
 <section id="how-does-clustering-work-simplified" class="level3">
 <h3 class="anchored" data-anchor-id="how-does-clustering-work-simplified">How Does Clustering Work? (Simplified)</h3>
