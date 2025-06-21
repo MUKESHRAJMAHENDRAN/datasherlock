@@ -2,7 +2,7 @@
 title: "Hi 👋 I’m Mukesh"
 image: profile.jpg
 about:
-  template: jolla
+  template: trestles
   # image-shape: round
   image-width: 18em
   links:
@@ -17,18 +17,16 @@ about:
       href: https://github.com/MUKESHRAJMAHENDRAN
 ---
 
----
-
 ### 🚀 About Me
 
- 💼 **Current**: AI Engineer at [Sena](https://sena.services/)  
-  🔙 **Past**: Data Scientist at [Cubera](https://cubera.co/) and [Visionet](https://www.visionet.com/)
+💼 **Current**: AI Engineer at [Sena](https://sena.services/)  
+🔙 **Past**: Data Scientist at [Cubera](https://cubera.co/) and [Visionet](https://www.visionet.com/)
 
- 📝 **Blogger** at [DataSherlock](https://datasherlock.blogspot.com/), writing about:
-  ```topics = ["Python", "Data Exploration", "Visualization", "Feature Engineering", "Machine Learning", "Deep Learning"]
+📝 **Blogger** at [DataSherlock](https://datasherlock.blogspot.com/), writing about:
+  ```topics = ["Python", "Data Exploration", "Visualization", "Feature Engineering", "Machine Learning", "Deep Learning", "Generative AI"]
   ```
 
- 🏅 **Kaggle Notebook Expert**:
+🏅 **Kaggle Notebook Expert**:
   Active on [Kaggle](https://www.kaggle.com/mukeshrajm), constantly learning and contributing to the data science community.
 
  💬 **Open for Questions**:
@@ -38,7 +36,6 @@ about:
   I enjoy writing clean code, learning new technologies, and building meaningful projects.
   I'm also passionate about contributing to open source — including libraries like `Narwhals`.
 
-  🌐  Currently building my own website with quarto. This site is for person like me who lost in abundance of knowlege in the internet for learning data science.
+  🌐 This site is for person like me who lost in abundance of knowlege in the internet for learning data science.
 
----
 

@@ -38,7 +38,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e05b10a33b060cc5e8d9f624c63cd02d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-f3a1c0f5093fcba51cbce2171b442cb7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,33 +115,18 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<div class="quarto-about-jolla">
-  <img src="profile.jpg" class="about-image
-  round " style="height: 18em; width: 18em;">
- <header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-about-trestles">
+  <div class="about-entity">
+    <img src="profile.jpg" class="about-image
+  rounded " style="width: 18em;">
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Hi 👋 I’m Mukesh</h1>
 </div>
 <div class="quarto-title-meta">
   </div>
-</header><main class="content" id="quarto-document-content">
-<hr>
-<section id="about-me" class="level3">
-<h3 data-anchor-id="about-me">🚀 About Me</h3>
-<p>💼 <strong>Current</strong>: AI Engineer at <a href="https://sena.services/">Sena</a><br>
-🔙 <strong>Past</strong>: Data Scientist at <a href="https://cubera.co/">Cubera</a> and <a href="https://www.visionet.com/">Visionet</a></p>
-<p>📝 <strong>Blogger</strong> at <a href="https://datasherlock.blogspot.com/">DataSherlock</a>, writing about: <code>topics = ["Python", "Data Exploration", "Visualization", "Feature Engineering", "Machine Learning", "Deep Learning"]</code></p>
-<p>🏅 <strong>Kaggle Notebook Expert</strong>: Active on <a href="https://www.kaggle.com/mukeshrajm">Kaggle</a>, constantly learning and contributing to the data science community.</p>
-<p>💬 <strong>Open for Questions</strong>: Reach out or start a discussion <a href="https://github.com/MUKESHRAJMAHENDRAN/MUKESHRAJMAHENDRAN/issues">here</a> — happy to connect!</p>
-<p>❤️ <strong>What Drives Me</strong>: I enjoy writing clean code, learning new technologies, and building meaningful projects. I’m also passionate about contributing to open source — including libraries like <code>Narwhals</code>.</p>
-<p>🌐 Currently building my own website with quarto. This site is for person like me who lost in abundance of knowlege in the internet for learning data science.</p>
-<hr>
-
-
-</section>
-</main> 
-  <hr class="about-sep">
-   <div class="about-links">
+</header>
+    <div class="about-links">
   <a href="https://x.com/mukeshmahendran" class="about-link" rel="" target="">
     <i class="bi bi-twitter"></i>
      <span class="about-link-text">Twitter</span>
@@ -155,6 +140,21 @@ ul.task-list li input[type="checkbox"] {
      <span class="about-link-text">Github</span>
   </a>
 </div>
+  </div>
+  <div class="about-contents"><main class="content" id="quarto-document-content">
+<section id="about-me" class="level3">
+<h3 data-anchor-id="about-me">🚀 About Me</h3>
+<p>💼 <strong>Current</strong>: AI Engineer at <a href="https://sena.services/">Sena</a><br>
+🔙 <strong>Past</strong>: Data Scientist at <a href="https://cubera.co/">Cubera</a> and <a href="https://www.visionet.com/">Visionet</a></p>
+<p>📝 <strong>Blogger</strong> at <a href="https://datasherlock.blogspot.com/">DataSherlock</a>, writing about: <code>topics = ["Python", "Data Exploration", "Visualization", "Feature Engineering", "Machine Learning", "Deep Learning", "Generative AI"]</code></p>
+<p>🏅 <strong>Kaggle Notebook Expert</strong>: Active on <a href="https://www.kaggle.com/mukeshrajm">Kaggle</a>, constantly learning and contributing to the data science community.</p>
+<p>💬 <strong>Open for Questions</strong>: Reach out or start a discussion <a href="https://github.com/MUKESHRAJMAHENDRAN/MUKESHRAJMAHENDRAN/issues">here</a> — happy to connect!</p>
+<p>❤️ <strong>What Drives Me</strong>: I enjoy writing clean code, learning new technologies, and building meaningful projects. I’m also passionate about contributing to open source — including libraries like <code>Narwhals</code>.</p>
+<p>🌐 This site is for person like me who lost in abundance of knowlege in the internet for learning data science.</p>
+
+
+</section>
+</main></div>
 </div>
  <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -222,7 +222,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/MUKESHRAJMAHENDRAN\.github\.io\/datasherlock\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
