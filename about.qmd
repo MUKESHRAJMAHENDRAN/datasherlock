@@ -19,8 +19,7 @@ about:
 
 ### 🚀 About Me
 
-💼 **Current**: AI Engineer at [Sena](https://sena.services/)  
-🔙 **Past**: Data Scientist at [Cubera](https://cubera.co/) and [Visionet](https://www.visionet.com/)
+💼 Ex Data Scientist at [Cubera](https://cubera.co/), [Visionet](https://www.visionet.com/) and AI Engineer at [Sena](https://sena.services/), Currently data scientist at [Fractal Analytics](https://fractal.ai/).
 
 📝 **Blogger** at [DataSherlock](https://datasherlock.blogspot.com/), writing about:
   ```topics = ["Python", "Data Exploration", "Visualization", "Feature Engineering", "Machine Learning", "Deep Learning", "Generative AI"]
