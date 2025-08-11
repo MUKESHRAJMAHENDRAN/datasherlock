@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mukesh">
+<meta name="dcterms.date" content="2025-08-11">
 
-<title>Predicting the future isn’t magic, it’s Artificial Intelligence. – dataSherlock</title>
+<title>Docker’s Basics – dataSherlock</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,28 +22,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f3a1c0f5093fcba51cbce2171b442cb7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-f3a1c0f5093fcba51cbce2171b442cb7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,77 +104,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">dataSherlock</span>
     </a>
   </div>
@@ -150,7 +127,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -173,160 +150,289 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Predicting the future isn’t magic, it’s Artificial Intelligence.</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">Docker’s Basics</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Containers</div>
+                <div class="quarto-category">Dev</div>
+                <div class="quarto-category">Image</div>
+                <div class="quarto-category">Orchestration</div>
+                <div class="quarto-category">Code</div>
+                <div class="quarto-category">Devops</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Mukesh </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 11, 2025</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="QW5hbHlzaXM=">Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q29kZQ==">Code <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Q29udGFpbmVycw==">Containers <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0YSUyMFNjaWVuY2U=">Data Science <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGV2">Dev <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RGV2b3Bz">Devops <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RURB">EDA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R2l0">Git <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SW1hZ2U=">Image <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWFjaGluZSUyMGxlYW5pbmc=">Machine leaning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="T3JjaGVzdHJhdGlvbg==">Orchestration <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGlwZWxpbmU=">Pipeline <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHJlZGljdGlvbg==">Prediction <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHJlcHJvY2Vzc2luZw==">Preprocessing <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VmVyc2lvbiUyMENvbnRyb2wlMjBTeXN0ZW0=">Version Control System <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<section id="dockers-basics" class="level1">
+<h1>Docker’s basics</h1>
+<p>There’s a ton of Docker material out there — blogs, videos, GPTs, LLMs, etc. I’m going to share <strong>my personal take</strong> on Docker, why it exists, and the bare essentials you need to actually get started without drowning in jargon.</p>
+<section id="the-birth-of-docker" class="level2">
+<h2 class="anchored" data-anchor-id="the-birth-of-docker">The Birth of Docker</h2>
+<p>Put simply: <strong>Docker lets you run multiple “computers” inside your computer</strong>.</p>
+<p>Virtual machines (VMs) do this too — but they are <em>heavy</em>, slow to start, and come with a lot of extra baggage (full OS per VM). Docker, on the other hand:</p>
+<ul>
+<li><strong>Lightweight</strong> — Shares the host system’s kernel instead of carrying an entire OS.</li>
+<li><strong>Isolated environments</strong> — No dependency conflicts between projects.</li>
+<li><strong>Portable</strong> — Package your app, send it to someone, and it’ll run exactly the same on their machine.</li>
+<li><strong>Easy setup</strong> — No “works on my machine” drama.</li>
+<li><strong>Cloud-ready</strong> — Combine it with Docker Hub or GitHub to share pre-built environments instantly.</li>
+</ul>
+<p>Think of Docker as:</p>
+<blockquote class="blockquote">
+<p>“A way to give each project its own little private playground… without wasting memory or time.”</p>
+</blockquote>
+</section>
+<section id="docker-jargon" class="level2">
+<h2 class="anchored" data-anchor-id="docker-jargon">Docker Jargon</h2>
+<p>Docker’s world is full of big scary words. Let’s shrink them down.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 39%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>What It Is</th>
+<th>Fun Analogy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Image</strong></td>
+<td>Read-only template for your app.</td>
+<td>The <em>recipe</em> for baking a cake.</td>
+</tr>
+<tr class="even">
+<td><strong>Container</strong></td>
+<td>A running instance of an image.</td>
+<td>The <em>cake</em> itself.</td>
+</tr>
+<tr class="odd">
+<td><strong>Volume</strong></td>
+<td>Storage space your container can use.</td>
+<td>The <em>fridge</em> where you keep cake leftovers.</td>
+</tr>
+<tr class="even">
+<td><strong>Dockerfile</strong></td>
+<td>Instructions to build your own image.</td>
+<td>The <em>handwritten recipe card</em>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Network</strong></td>
+<td>Lets containers talk to each other.</td>
+<td>A <em>walkie-talkie</em> for cakes (ok, this analogy broke).</td>
+</tr>
+<tr class="even">
+<td><strong>Docker Compose</strong></td>
+<td>A YAML file to run multiple containers together.</td>
+<td>The <em>wedding planner</em> coordinating all cakes and guests.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="docker-hub" class="level2">
+<h2 class="anchored" data-anchor-id="docker-hub">Docker Hub</h2>
+<p>Software providers like PostgreSQL, MySQL, Python, and Ubuntu have already <strong>containerized their applications</strong> and put them on Docker Hub.</p>
+<p>You just pull them down, like:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull postgres:15</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull python:3.9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It’s like saying:</p>
+<blockquote class="blockquote">
+<p>“Hey, I’d like the ready-made cake recipe, version 3.9, please.”</p>
+</blockquote>
+</section>
+<section id="docker-commands-youll-actually-use" class="level2">
+<h2 class="anchored" data-anchor-id="docker-commands-youll-actually-use">Docker Commands You’ll Actually Use</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 39%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>docker pull &lt;image&gt;</code></td>
+<td>Download an image from Docker Hub.</td>
+</tr>
+<tr class="even">
+<td><code>docker build -t &lt;name&gt; .</code></td>
+<td>Build an image from a Dockerfile.</td>
+</tr>
+<tr class="odd">
+<td><code>docker run &lt;image&gt;</code></td>
+<td>Run a container from an image.</td>
+</tr>
+<tr class="even">
+<td><code>docker run -d &lt;image&gt;</code></td>
+<td>Run a container in detached (background) mode.</td>
+</tr>
+<tr class="odd">
+<td><code>docker run -p 8000:8000 &lt;image&gt;</code></td>
+<td>Map host port to container port.</td>
+</tr>
+<tr class="even">
+<td><code>docker ps</code></td>
+<td>List running containers.</td>
+</tr>
+<tr class="odd">
+<td><code>docker ps -a</code></td>
+<td>List <strong>all</strong> containers (including stopped ones).</td>
+</tr>
+<tr class="even">
+<td><code>docker stop &lt;id&gt;</code></td>
+<td>Stop a running container.</td>
+</tr>
+<tr class="odd">
+<td><code>docker start &lt;id&gt;</code></td>
+<td>Start a stopped container.</td>
+</tr>
+<tr class="even">
+<td><code>docker restart &lt;id&gt;</code></td>
+<td>Restart a container.</td>
+</tr>
+<tr class="odd">
+<td><code>docker exec -it &lt;id&gt; bash</code></td>
+<td>Open a shell inside a running container.</td>
+</tr>
+<tr class="even">
+<td><code>docker logs &lt;id&gt;</code></td>
+<td>View logs of a container.</td>
+</tr>
+<tr class="odd">
+<td><code>docker rm &lt;id&gt;</code></td>
+<td>Remove a stopped container.</td>
+</tr>
+<tr class="even">
+<td><code>docker rm -f &lt;id&gt;</code></td>
+<td>Force remove a running container.</td>
+</tr>
+<tr class="odd">
+<td><code>docker rmi &lt;image&gt;</code></td>
+<td>Remove an image.</td>
+</tr>
+<tr class="even">
+<td><code>docker images</code></td>
+<td>List all images on your system.</td>
+</tr>
+<tr class="odd">
+<td><code>docker volume ls</code></td>
+<td>List all Docker volumes.</td>
+</tr>
+<tr class="even">
+<td><code>docker network ls</code></td>
+<td>List Docker networks.</td>
+</tr>
+<tr class="odd">
+<td><code>docker inspect &lt;id&gt;</code></td>
+<td>Show detailed info about a container or image.</td>
+</tr>
+<tr class="even">
+<td><code>docker compose up</code></td>
+<td>Start services defined in <code>docker-compose.yml</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>docker compose up --build</code></td>
+<td>Rebuild images before starting.</td>
+</tr>
+<tr class="even">
+<td><code>docker compose down</code></td>
+<td>Stop and remove services from <code>docker-compose.yml</code>.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cleanup-commands-your-sanity-savers" class="level2">
+<h2 class="anchored" data-anchor-id="cleanup-commands-your-sanity-savers">Cleanup Commands (Your Sanity Savers)</h2>
+<p>Sometimes you just want a clean slate:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> container prune      <span class="co"># Remove all stopped containers</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> image prune          <span class="co"># Remove unused images</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> volume prune         <span class="co"># Remove unused volumes</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> network prune        <span class="co"># Remove unused networks</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> system prune         <span class="co"># Remove all unused containers, images, volumes, networks</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> system prune <span class="at">-a</span>      <span class="co"># Remove everything, including unused images</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Caution</strong>: <code>docker system prune -a</code> is like pressing the “nuke” button — it will delete <strong>all</strong> images and containers not currently running.</p>
+<p>If you like, I can <strong>merge this full command cheat sheet into your Docker blog post</strong> so it becomes a one-stop beginner + reference guide. That way, you don’t have to maintain two separate docs.</p>
+</section>
+<section id="a-simple-fastapi-dockerfile" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-fastapi-dockerfile">A Simple FastAPI Dockerfile</h2>
+<p>Here’s a minimal example for a FastAPI app:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> python:3.9</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /code</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> ./requirements.txt /code/requirements.txt</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">pip</span> install <span class="at">--no-cache-dir</span> <span class="at">--upgrade</span> <span class="at">-r</span> /code/requirements.txt</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> ./app /code/app</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"fastapi"</span>, <span class="st">"run"</span>, <span class="st">"app/main.py"</span>, <span class="st">"--port"</span>, <span class="st">"80"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="breaking-it-down" class="level2">
+<h2 class="anchored" data-anchor-id="breaking-it-down">Breaking It Down:</h2>
+<ul>
+<li><strong>FROM</strong> — The base image (Python 3.9). Think: “Start with a ready kitchen.”</li>
+<li><strong>WORKDIR</strong> — Where commands will run inside the container.</li>
+<li><strong>COPY</strong> — Move files from your computer into the image.</li>
+<li><strong>RUN</strong> — Execute commands when building the image (install dependencies).</li>
+<li><strong>CMD</strong> — The default command to run when the container starts.</li>
+</ul>
+</section>
+<section id="cmd-vs-entrypoint-whats-the-difference" class="level2">
+<h2 class="anchored" data-anchor-id="cmd-vs-entrypoint-whats-the-difference">CMD vs ENTRYPOINT — What’s the Difference?</h2>
+<ul>
+<li><strong>ENTRYPOINT</strong> → The fixed part of the command that will <em>always</em> run.</li>
+<li><strong>CMD</strong> → The part you can override when running the container.</li>
+</ul>
+<p>Think of ENTRYPOINT as the <em>cake base</em> (always needed), and CMD as the <em>flavor</em> (you can swap chocolate for vanilla).</p>
+</section>
+<section id="final-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="final-thoughts">Final Thoughts</h2>
+<p>Docker isn’t magic — it’s just a smart way to package and run software so it’s consistent everywhere. Once you get the basic terms down and try a few builds yourself, you’ll wonder how you ever shipped apps without it. If you still dig deep You know docker compose which is much effient way to orchestrate multiple docker in a streamlined way.</p>
 
 
+</section>
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Q29udGFpbmVycyUyQ0RldiUyQ0ltYWdlJTJDT3JjaGVzdHJhdGlvbiUyQ0NvZGUlMkNEZXZvcHM=" data-listing-date-sort="1754870400000" data-listing-file-modified-sort="1754935477640" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1982">
-<div class="thumbnail"><a href="./posts/docker_basics/docker_basics.html" class="no-external">
-
-<img loading="lazy" src="./posts/docker_basics/docker.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/docker_basics/docker_basics.html" class="no-external">Docker’s Basics</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q29udGFpbmVycw=='); return false;">Containers</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGV2'); return false;">Dev</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SW1hZ2U='); return false;">Image</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('T3JjaGVzdHJhdGlvbg=='); return false;">Orchestration</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q29kZQ=='); return false;">Code</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGV2b3Bz'); return false;">Devops</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/docker_basics/docker_basics.html" class="no-external">
-There’s a ton of Docker material out there — blogs, videos, GPTs, LLMs, etc. I’m going to share <strong>my personal take</strong> on Docker, why it exists, and the bare essentials you need…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/docker_basics/docker_basics.html" class="no-external">
-<div class="listing-date">
-Aug 11, 2025
-</div>
-<div class="listing-author">
-Mukesh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="TWFjaGluZSUyMGxlYW5pbmclMkNFREElMkNBbmFseXNpcyUyQ1ByZXByb2Nlc3NpbmclMkNQcmVkaWN0aW9uJTJDUGlwZWxpbmU=" data-listing-date-sort="1750204800000" data-listing-file-modified-sort="1754922829173" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2996">
-<div class="thumbnail"><a href="./posts/tablur_data_revision/machine_leaning.html" class="no-external">
-
-<img loading="lazy" src="./posts/tablur_data_revision/machine_learning.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/tablur_data_revision/machine_leaning.html" class="no-external">Brush up your Machine learning Skill</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWFjaGluZSUyMGxlYW5pbmc='); return false;">Machine leaning</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RURB'); return false;">EDA</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QW5hbHlzaXM='); return false;">Analysis</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHJlcHJvY2Vzc2luZw=='); return false;">Preprocessing</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHJlZGljdGlvbg=='); return false;">Prediction</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UGlwZWxpbmU='); return false;">Pipeline</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/tablur_data_revision/machine_leaning.html" class="no-external">
-In a simple terms computer is able to learn from the data without being explicitly programmed.
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/tablur_data_revision/machine_leaning.html" class="no-external">
-<div class="listing-date">
-Jun 18, 2025
-</div>
-<div class="listing-author">
-Mukesh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="VmVyc2lvbiUyMENvbnRyb2wlMjBTeXN0ZW0lMkNEZXYlMkNEYXRhJTIwU2NpZW5jZSUyQ0dpdCUyQ0NvZGU=" data-listing-date-sort="1749600000000" data-listing-file-modified-sort="1754922905993" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1187">
-<div class="thumbnail"><a href="./posts/git_github/git_github.html" class="no-external">
-
-<img loading="lazy" src="./posts/git_github/github.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/git_github/git_github.html" class="no-external">Understanding the Git and Github (Everything you need to know to get started)</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('VmVyc2lvbiUyMENvbnRyb2wlMjBTeXN0ZW0='); return false;">Version Control System</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGV2'); return false;">Dev</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFNjaWVuY2U='); return false;">Data Science</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('R2l0'); return false;">Git</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q29kZQ=='); return false;">Code</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/git_github/git_github.html" class="no-external">
-Version Control System simply means we can go the back to version we want to. There are Various version Control system available such as git, CVS, Subversion, Perforce…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/git_github/git_github.html" class="no-external">
-<div class="listing-date">
-Jun 11, 2025
-</div>
-<div class="listing-author">
-Mukesh
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
