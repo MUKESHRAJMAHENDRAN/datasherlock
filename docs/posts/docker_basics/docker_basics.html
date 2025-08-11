@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Mukesh">
-<meta name="dcterms.date" content="2025-06-11">
+<meta name="dcterms.date" content="2025-08-11">
 
-<title>Understanding the Git and Github (Everything you need to know to get started) – dataSherlock</title>
+<title>Docker’s Basics – dataSherlock</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -69,10 +104,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<meta name="mermaid-theme" content="neutral">
-<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -120,13 +151,14 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Understanding the Git and Github (Everything you need to know to get started)</h1>
+      <h1 class="title">Docker’s Basics</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">Version Control System</div>
+                <div class="quarto-category">Containers</div>
                 <div class="quarto-category">Dev</div>
-                <div class="quarto-category">Data Science</div>
-                <div class="quarto-category">Git</div>
+                <div class="quarto-category">Image</div>
+                <div class="quarto-category">Orchestration</div>
                 <div class="quarto-category">Code</div>
+                <div class="quarto-category">Devops</div>
               </div>
                   </div>
   </div>
@@ -144,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">June 11, 2025</p>
+        <p class="date">August 11, 2025</p>
       </div>
     </div>
     
@@ -163,236 +195,238 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="version-control-system" class="level2">
-<h2 class="anchored" data-anchor-id="version-control-system">Version Control System</h2>
-<p>Version Control System simply means we can go the back to version we want to. There are Various version Control system available such as git, CVS, Subversion, Perforce, Bazaar, and so on.</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-Z[v0]--&gt;A[v1]--&gt;B(v2)--&gt;C(v3)
-master[Your here] --&gt;C
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>We are at the version 3 we can go back to we version 2 and made the changes come back. It will be very usefull when we collaborating with many people.</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-Z[v0]--&gt;A[v1]--&gt;B(v2)--&gt;C(v3)
-master[Your here] --&gt;B
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</section>
-<section id="git-and-github" class="level2">
-<h2 class="anchored" data-anchor-id="git-and-github">Git and Github</h2>
-<p>We are going to see Git and github(largest host for git repository)</p>
-<section id="three-states-of-git" class="level3">
-<h3 class="anchored" data-anchor-id="three-states-of-git">Three states of git</h3>
-<ol type="1">
-<li>Modified (Files you are Modified)</li>
-<li>staged (Modified file are taked out to store in local database)</li>
-<li>commit (Staged files are stored in local database)</li>
-</ol>
-</section>
-<section id="installation" class="level3">
-<h3 class="anchored" data-anchor-id="installation">Installation</h3>
+<section id="dockers-basics" class="level1">
+<h1>Docker’s basics</h1>
+<p>There’s a ton of Docker material out there — blogs, videos, GPTs, LLMs, etc. I’m going to share <strong>my personal take</strong> on Docker, why it exists, and the bare essentials you need to actually get started without drowning in jargon.</p>
+<section id="the-birth-of-docker" class="level2">
+<h2 class="anchored" data-anchor-id="the-birth-of-docker">The Birth of Docker</h2>
+<p>Put simply: <strong>Docker lets you run multiple “computers” inside your computer</strong>.</p>
+<p>Virtual machines (VMs) do this too — but they are <em>heavy</em>, slow to start, and come with a lot of extra baggage (full OS per VM). Docker, on the other hand:</p>
 <ul>
-<li>Install the <a href="https://git-scm.com/downloads">git</a> based on your operating system.</li>
-<li>Create a <a href="https://github.com/signup?source=login">github</a> account.</li>
+<li><strong>Lightweight</strong> — Shares the host system’s kernel instead of carrying an entire OS.</li>
+<li><strong>Isolated environments</strong> — No dependency conflicts between projects.</li>
+<li><strong>Portable</strong> — Package your app, send it to someone, and it’ll run exactly the same on their machine.</li>
+<li><strong>Easy setup</strong> — No “works on my machine” drama.</li>
+<li><strong>Cloud-ready</strong> — Combine it with Docker Hub or GitHub to share pre-built environments instantly.</li>
 </ul>
-<p><em>It is Straight forward, if you are having problem in installing feel free to ask.</em></p>
-<section id="initial-config" class="level4">
-<h4 class="anchored" data-anchor-id="initial-config">Initial Config</h4>
-<pre><code>$ git config --global user.name "Your Name"
-$ git config --global user.email yourname@example.com</code></pre>
-<p>You can also config your editor, if you just starting out start with notepad for better understanding of concepts.</p>
+<p>Think of Docker as:</p>
+<blockquote class="blockquote">
+<p>“A way to give each project its own little private playground… without wasting memory or time.”</p>
+</blockquote>
 </section>
+<section id="docker-jargon" class="level2">
+<h2 class="anchored" data-anchor-id="docker-jargon">Docker Jargon</h2>
+<p>Docker’s world is full of big scary words. Let’s shrink them down.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 39%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>What It Is</th>
+<th>Fun Analogy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Image</strong></td>
+<td>Read-only template for your app.</td>
+<td>The <em>recipe</em> for baking a cake.</td>
+</tr>
+<tr class="even">
+<td><strong>Container</strong></td>
+<td>A running instance of an image.</td>
+<td>The <em>cake</em> itself.</td>
+</tr>
+<tr class="odd">
+<td><strong>Volume</strong></td>
+<td>Storage space your container can use.</td>
+<td>The <em>fridge</em> where you keep cake leftovers.</td>
+</tr>
+<tr class="even">
+<td><strong>Dockerfile</strong></td>
+<td>Instructions to build your own image.</td>
+<td>The <em>handwritten recipe card</em>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Network</strong></td>
+<td>Lets containers talk to each other.</td>
+<td>A <em>walkie-talkie</em> for cakes (ok, this analogy broke).</td>
+</tr>
+<tr class="even">
+<td><strong>Docker Compose</strong></td>
+<td>A YAML file to run multiple containers together.</td>
+<td>The <em>wedding planner</em> coordinating all cakes and guests.</td>
+</tr>
+</tbody>
+</table>
 </section>
+<section id="docker-hub" class="level2">
+<h2 class="anchored" data-anchor-id="docker-hub">Docker Hub</h2>
+<p>Software providers like PostgreSQL, MySQL, Python, and Ubuntu have already <strong>containerized their applications</strong> and put them on Docker Hub.</p>
+<p>You just pull them down, like:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull postgres:15</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull python:3.9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It’s like saying:</p>
+<blockquote class="blockquote">
+<p>“Hey, I’d like the ready-made cake recipe, version 3.9, please.”</p>
+</blockquote>
 </section>
-<section id="git-basics" class="level2">
-<h2 class="anchored" data-anchor-id="git-basics">Git Basics</h2>
-<p>If your are beginner feel free to follow along with me. Once your comfortable you can create your own repository and test it out what you are learned. <em>repository(repo) - Nothing but a folder</em></p>
-<section id="basic-commands" class="level4">
-<h4 class="anchored" data-anchor-id="basic-commands">Basic Commands</h4>
+<section id="docker-commands-youll-actually-use" class="level2">
+<h2 class="anchored" data-anchor-id="docker-commands-youll-actually-use">Docker Commands You’ll Actually Use</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 39%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>docker pull &lt;image&gt;</code></td>
+<td>Download an image from Docker Hub.</td>
+</tr>
+<tr class="even">
+<td><code>docker build -t &lt;name&gt; .</code></td>
+<td>Build an image from a Dockerfile.</td>
+</tr>
+<tr class="odd">
+<td><code>docker run &lt;image&gt;</code></td>
+<td>Run a container from an image.</td>
+</tr>
+<tr class="even">
+<td><code>docker run -d &lt;image&gt;</code></td>
+<td>Run a container in detached (background) mode.</td>
+</tr>
+<tr class="odd">
+<td><code>docker run -p 8000:8000 &lt;image&gt;</code></td>
+<td>Map host port to container port.</td>
+</tr>
+<tr class="even">
+<td><code>docker ps</code></td>
+<td>List running containers.</td>
+</tr>
+<tr class="odd">
+<td><code>docker ps -a</code></td>
+<td>List <strong>all</strong> containers (including stopped ones).</td>
+</tr>
+<tr class="even">
+<td><code>docker stop &lt;id&gt;</code></td>
+<td>Stop a running container.</td>
+</tr>
+<tr class="odd">
+<td><code>docker start &lt;id&gt;</code></td>
+<td>Start a stopped container.</td>
+</tr>
+<tr class="even">
+<td><code>docker restart &lt;id&gt;</code></td>
+<td>Restart a container.</td>
+</tr>
+<tr class="odd">
+<td><code>docker exec -it &lt;id&gt; bash</code></td>
+<td>Open a shell inside a running container.</td>
+</tr>
+<tr class="even">
+<td><code>docker logs &lt;id&gt;</code></td>
+<td>View logs of a container.</td>
+</tr>
+<tr class="odd">
+<td><code>docker rm &lt;id&gt;</code></td>
+<td>Remove a stopped container.</td>
+</tr>
+<tr class="even">
+<td><code>docker rm -f &lt;id&gt;</code></td>
+<td>Force remove a running container.</td>
+</tr>
+<tr class="odd">
+<td><code>docker rmi &lt;image&gt;</code></td>
+<td>Remove an image.</td>
+</tr>
+<tr class="even">
+<td><code>docker images</code></td>
+<td>List all images on your system.</td>
+</tr>
+<tr class="odd">
+<td><code>docker volume ls</code></td>
+<td>List all Docker volumes.</td>
+</tr>
+<tr class="even">
+<td><code>docker network ls</code></td>
+<td>List Docker networks.</td>
+</tr>
+<tr class="odd">
+<td><code>docker inspect &lt;id&gt;</code></td>
+<td>Show detailed info about a container or image.</td>
+</tr>
+<tr class="even">
+<td><code>docker compose up</code></td>
+<td>Start services defined in <code>docker-compose.yml</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>docker compose up --build</code></td>
+<td>Rebuild images before starting.</td>
+</tr>
+<tr class="even">
+<td><code>docker compose down</code></td>
+<td>Stop and remove services from <code>docker-compose.yml</code>.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cleanup-commands-your-sanity-savers" class="level2">
+<h2 class="anchored" data-anchor-id="cleanup-commands-your-sanity-savers">Cleanup Commands (Your Sanity Savers)</h2>
+<p>Sometimes you just want a clean slate:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> container prune      <span class="co"># Remove all stopped containers</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> image prune          <span class="co"># Remove unused images</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> volume prune         <span class="co"># Remove unused volumes</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> network prune        <span class="co"># Remove unused networks</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> system prune         <span class="co"># Remove all unused containers, images, volumes, networks</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> system prune <span class="at">-a</span>      <span class="co"># Remove everything, including unused images</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Caution</strong>: <code>docker system prune -a</code> is like pressing the “nuke” button — it will delete <strong>all</strong> images and containers not currently running.</p>
+<p>If you like, I can <strong>merge this full command cheat sheet into your Docker blog post</strong> so it becomes a one-stop beginner + reference guide. That way, you don’t have to maintain two separate docs.</p>
+</section>
+<section id="a-simple-fastapi-dockerfile" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-fastapi-dockerfile">A Simple FastAPI Dockerfile</h2>
+<p>Here’s a minimal example for a FastAPI app:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> python:3.9</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /code</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> ./requirements.txt /code/requirements.txt</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">pip</span> install <span class="at">--no-cache-dir</span> <span class="at">--upgrade</span> <span class="at">-r</span> /code/requirements.txt</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> ./app /code/app</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"fastapi"</span>, <span class="st">"run"</span>, <span class="st">"app/main.py"</span>, <span class="st">"--port"</span>, <span class="st">"80"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="breaking-it-down" class="level2">
+<h2 class="anchored" data-anchor-id="breaking-it-down">Breaking It Down:</h2>
 <ul>
-<li>ls -&gt; list the file or folder in that region</li>
-<li>ls -a -&gt;(list the hidden files) it work on the linux</li>
-<li>mkdir <folder name=""> -&gt; create a new folder</folder></li>
-<li>cd -&gt; change the directory or get in to the directory</li>
-<li>rm <file name="">-&gt; , rm -r <folder name=""> recursively remove everything</folder></file></li>
+<li><strong>FROM</strong> — The base image (Python 3.9). Think: “Start with a ready kitchen.”</li>
+<li><strong>WORKDIR</strong> — Where commands will run inside the container.</li>
+<li><strong>COPY</strong> — Move files from your computer into the image.</li>
+<li><strong>RUN</strong> — Execute commands when building the image (install dependencies).</li>
+<li><strong>CMD</strong> — The default command to run when the container starts.</li>
 </ul>
 </section>
-<section id="git-initialization-stage-commit" class="level3">
-<h3 class="anchored" data-anchor-id="git-initialization-stage-commit">Git Initialization, stage, commit</h3>
-<section id="git-initialization" class="level4">
-<h4 class="anchored" data-anchor-id="git-initialization">Git Initialization</h4>
+<section id="cmd-vs-entrypoint-whats-the-difference" class="level2">
+<h2 class="anchored" data-anchor-id="cmd-vs-entrypoint-whats-the-difference">CMD vs ENTRYPOINT — What’s the Difference?</h2>
 <ul>
-<li>mkdir understand_git -&gt; Create a folder with name understand_git</li>
-<li>cd understand_git -&gt; get into the understand_git folder</li>
-<li>git init -&gt; initialize the git in the folder
-<ul>
-<li>ls -a -&gt; if you want to look out what what it initialized is .git(It work on linux)</li>
-</ul></li>
+<li><strong>ENTRYPOINT</strong> → The fixed part of the command that will <em>always</em> run.</li>
+<li><strong>CMD</strong> → The part you can override when running the container.</li>
 </ul>
+<p>Think of ENTRYPOINT as the <em>cake base</em> (always needed), and CMD as the <em>flavor</em> (you can swap chocolate for vanilla).</p>
 </section>
-<section id="git-stage" class="level4">
-<h4 class="anchored" data-anchor-id="git-stage">Git stage</h4>
-<ul>
-<li>Create a README.md file in the repo. And write a sentence like this is about understanding git.</li>
-<li>git status -&gt; Check the status of file. It shows on master branch and README.md file as untracked file.</li>
-<li>git add . or git add * (If you want to particular file -&gt; git add README.md)</li>
-</ul>
-</section>
-<section id="git-commit" class="level4">
-<h4 class="anchored" data-anchor-id="git-commit">Git Commit</h4>
-<ul>
-<li>Check the status(git status) untracked file become become tracked(File colour changed from red to green)</li>
-<li>git commit -m “Inital commit” (-m is the message for our local storage in case we want to go back it will be very usefull)</li>
-<li>git status -&gt; Branch is clean nothing to commit
-<ul>
-<li>git status -s (Short status for the track)</li>
-</ul></li>
-</ul>
-</section>
-</section>
-<section id="ignoring-filesfolder" class="level3">
-<h3 class="anchored" data-anchor-id="ignoring-filesfolder">Ignoring files/folder</h3>
-<p>There are few file/folder like cache, log, etc. We don’t need to maintain history or track for that type of file and we can ignore from tracking by creating .gitignore file and add the name of the file or folder to ignore. We can also use Regular expression to ignore file</p>
-</section>
-<section id="staged-and-unstaged-changes" class="level3">
-<h3 class="anchored" data-anchor-id="staged-and-unstaged-changes">Staged and Unstaged changes</h3>
-<ul>
-<li>let’s open a README.md file and add the second line like git is a powerfull tool</li>
-<li>git status will show the file is modified</li>
-<li>git diff -&gt; Shows the what is modified from the last commit</li>
-<li>git diff –staged or git diff –cached -&gt; What are change in the staged file difference from the previous commit</li>
-</ul>
-</section>
-<section id="skipping-the-staging-area." class="level3">
-<h3 class="anchored" data-anchor-id="skipping-the-staging-area.">Skipping the staging area.</h3>
-<section id="if-you-also-skip-the-staging-area-and-directly-stage-and-commit" class="level4">
-<h4 class="anchored" data-anchor-id="if-you-also-skip-the-staging-area-and-directly-stage-and-commit">If you also skip the staging area and directly stage and commit</h4>
-<ul>
-<li>Add a line in README.md like github is amazing.</li>
-<li>git commit -am “Let’s skip the stagging area” or git commit -a -m “Let’s skip the stagging area”.</li>
-<li>Use it carefully sometime we don’t want to add every changes in every file.</li>
-</ul>
-</section>
-</section>
-<section id="unstage-the-staged-file" class="level3">
-<h3 class="anchored" data-anchor-id="unstage-the-staged-file">Unstage the staged file</h3>
-<section id="if-you-are-accidently-staged-some-file-and-want-to-unstage-the-file" class="level4">
-<h4 class="anchored" data-anchor-id="if-you-are-accidently-staged-some-file-and-want-to-unstage-the-file">If you are accidently staged some file and want to unstage the file</h4>
-<ul>
-<li>create a text file called file_1.txt and add a line like nature is amazing</li>
-<li>git add . -&gt; it adds the file to the staging area and you accidently added that file for staging</li>
-<li>git rm –cached file_1.txt -&gt; it will unstage the file_1.txt</li>
-<li>you can also do it by (git reset file_1.txt)</li>
-</ul>
-</section>
-</section>
-<section id="log" class="level3">
-<h3 class="anchored" data-anchor-id="log">Log</h3>
-<ul>
-<li>git log -&gt; Gives the commit history(It is very much usefull when we want to roll back)</li>
-<li>git log –stat -&gt; Gives the commit history with changes</li>
-</ul>
-</section>
-<section id="undoing-the-commit-message" class="level3">
-<h3 class="anchored" data-anchor-id="undoing-the-commit-message">Undoing the commit message</h3>
-<ul>
-<li>If you mess up with your commit message you can go back and edit the message.</li>
-<li>Open README.md add text in a new line like i love programming</li>
-<li>git add .</li>
-<li>git commit -m “added”</li>
-<li>you just added the message as added so i want message as added a new line</li>
-<li>git commit –amend -&gt; It will open message prompt to re-enter your commit message.</li>
-</ul>
-</section>
-<section id="unmodifying-a-modified-file" class="level3">
-<h3 class="anchored" data-anchor-id="unmodifying-a-modified-file">Unmodifying a modified file</h3>
-<ul>
-<li>Open README.md add text in a new line like Python is great</li>
-<li>Check the git status, README.md is modified</li>
-<li>git checkout – README.md -&gt; it will roll back the modified file.</li>
-</ul>
-</section>
-<section id="git-restore" class="level3">
-<h3 class="anchored" data-anchor-id="git-restore">Git restore</h3>
-<ul>
-<li>git restore –staged file_name -&gt; Unstage the staged file</li>
-<li>git restore file_name -&gt; Unmodifying the modified file</li>
-</ul>
-<section id="what-to-use" class="level4">
-<h4 class="anchored" data-anchor-id="what-to-use">What to use?</h4>
-<ul>
-<li>git reset or git cached or git restore - I will suggest git restore because it is powerfull than others</li>
-</ul>
-</section>
-</section>
-</section>
-<section id="git-branching-and-github" class="level2">
-<h2 class="anchored" data-anchor-id="git-branching-and-github">Git Branching and Github</h2>
-<section id="github-intro" class="level3">
-<h3 class="anchored" data-anchor-id="github-intro">Github Intro</h3>
-<ul>
-<li>Github largest host of git repo- Hope you already created that account if your are following this.</li>
-<li>For practice purpose i will create a understanding_git repo in my github you can fork it follow along and i will merge your pull request.</li>
-<li>Github uses main instead of master branch from few year back you can also configure from name as main/master</li>
-</ul>
-</section>
-<section id="git-branching" class="level3">
-<h3 class="anchored" data-anchor-id="git-branching">Git branching</h3>
-<p>Before deep diving in to the branches let understand few basics. - You are not able to directly commit on the project of the team/Organization. - First you need a copy of the project in your repo just click the fork of this <a href="https://github.com/MUKESHRAJMAHENDRAN/understanding_git">project</a> at the right side here. - Once it forked copy the url from the code dropdown or repo url. - git clone url -&gt; This command will copy the repo in the local.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Create a new branch Once cloned
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Never ever commit on the master/main branch</li>
-<li>New branch new issue</li>
-</ul>
-</div>
-</div>
-</section>
-<section id="contribution-to-a-project" class="level3">
-<h3 class="anchored" data-anchor-id="contribution-to-a-project">Contribution to a project</h3>
-<ol type="1">
-<li>I test the every command so anything not working create an issue <a href="https://github.com/MUKESHRAJMAHENDRAN/understanding_git/issues">here</a></li>
-<li>git remote upstream https://github.com/MUKESHRAJMAHENDRAN/understanding_git (This will add origin of the forked repo)</li>
-<li>git branch inspired_line -&gt; Create a new branch</li>
-<li>git checkout inspired_line</li>
-<li>add your line on the quote.txt</li>
-<li>git add .</li>
-<li>git commit -m “Added the line”</li>
-<li>git checkout main</li>
-<li>git pull upstream main -&gt; If any change are commited on the parent main branch that with sync with main branch of the local</li>
-<li>git merge inspired_line (It open message prompt and type what merge message is all about)</li>
-<li>git push origin main</li>
-<li>Once pushed go to your repo of understanding_git from the contribution create a open pull request i will merge it</li>
-<li>Once merged delete the branch name</li>
-<li>git branch -d inspired_line</li>
-</ol>
-<p>This blog is just a fuel to kick to get starting there are so much things to learn from git and github like Git Rebase, merge conflict, cherry pick, git on the server, distribution of git, branch Workflow, etc.We will learn in the upcomming post.</p>
+<section id="final-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="final-thoughts">Final Thoughts</h2>
+<p>Docker isn’t magic — it’s just a smart way to package and run software so it’s consistent everywhere. Once you get the basic terms down and try a few builds yourself, you’ll wonder how you ever shipped apps without it. If you still dig deep You know docker compose which is much effient way to orchestrate multiple docker in a streamlined way.</p>
 
 
 </section>
