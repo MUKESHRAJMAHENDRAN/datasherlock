@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/text_sql/text_sql.html",
       "/posts/docker_basics/docker_basics.html",
       "/posts/tablur_data_revision/machine_leaning.html",
       "/posts/git_github/git_github.html"
