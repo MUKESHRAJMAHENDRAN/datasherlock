@@ -164,8 +164,189 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<section id="designhigh-and-low-level-and-architecture-of-text-to-sql-agent" class="level1">
+<h1>Design(High and Low Level) and Architecture of text to SQL Agent</h1>
+<p>This blog is to understand high and low level design of <strong>natual languagae to Sql Query Execution</strong> and get the output in human understable format.</p>
+<section id="why-not-single-llm-call" class="level2">
+<h2 class="anchored" data-anchor-id="why-not-single-llm-call">Why Not Single LLM Call?</h2>
+<section id="lack-of-context" class="level3">
+<h3 class="anchored" data-anchor-id="lack-of-context">Lack of context</h3>
+<p>LLM(Large Language Model) doesn’t understand business log - what is what?. And it will fail in production. And the accuracy is also around 50 - 60%.</p>
+</section>
+<section id="hallucination" class="level3">
+<h3 class="anchored" data-anchor-id="hallucination">Hallucination</h3>
+<p>LLM confidently generated imaginary tables, column names and flawed joins.</p>
+</section>
+<section id="performance-disaster" class="level3">
+<h3 class="anchored" data-anchor-id="performance-disaster">Performance Disaster</h3>
+<p>Query that perform a entire table scan on billion rows that criple the entire warehouse. Some database charge based on the query runtime.</p>
+</section>
+<section id="security" class="level3">
+<h3 class="anchored" data-anchor-id="security">Security</h3>
+<p>Direct execution of llm generated sql is an open invitation for sql ingesion attack or an unitentional data exposure.</p>
+</section>
+</section>
+<section id="how-can-i-go-with-production-grade" class="level2">
+<h2 class="anchored" data-anchor-id="how-can-i-go-with-production-grade">How can I go with production grade?</h2>
+<p><strong>Pipeline with safeguard, context aware and validation at every step</strong>. Ignoring the validation leads to inefficient query the worst case - massive security vulnerablities</p>
+<ul>
+<li>Handle complex queries(Enterprise scheme)</li>
+<li>self correction queries</li>
+<li>safe and executable ones</li>
+<li>Enforcing Security permission</li>
+<li>providing explainable result</li>
+</ul>
+</section>
+<section id="high-level-design" class="level2">
+<h2 class="anchored" data-anchor-id="high-level-design">High Level Design</h2>
+<section id="modularity-and-specilization" class="level3">
+<h3 class="anchored" data-anchor-id="modularity-and-specilization">Modularity and Specilization</h3>
+<p>One LLM Doesn’t do everything</p>
+</section>
+<section id="agentic-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="agentic-workflow">Agentic Workflow</h3>
+<ul>
+<li>statefull graph</li>
+<li>conditional rerouting</li>
+<li>retry loops</li>
+</ul>
+</section>
+<section id="safety-first" class="level3">
+<h3 class="anchored" data-anchor-id="safety-first">Safety First</h3>
+<p>Read Replicas and Read Only DB Acess - SQL Guard - &gt; High Risk queries human in the loop</p>
+</section>
+<section id="observablitymonitoring" class="level3">
+<h3 class="anchored" data-anchor-id="observablitymonitoring">Observablity/Monitoring</h3>
+<p>Every Step is traced (Logging / Eval/ LLM as Judge)</p>
+</section>
+<section id="optimizer" class="level3">
+<h3 class="anchored" data-anchor-id="optimizer">Optimizer</h3>
+<p>We optimize the performace like feedback loop, negative signaling with ground truth creates a golden data set out of it.</p>
+</section>
+<section id="scalablity" class="level3">
+<h3 class="anchored" data-anchor-id="scalablity">Scalablity</h3>
+<p>Async, caching, serverless, loadbalacing, etc</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="text_sql_1.png" class="img-fluid figure-img"></p>
+<figcaption>Text to SQL Agent Architecture</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>We put all the actionable item as a tool - Task giver.</code></p>
+</div>
+</div>
+</section>
+<section id="intent-classifier-as-a-tool" class="level3">
+<h3 class="anchored" data-anchor-id="intent-classifier-as-a-tool">Intent classifier as a tool</h3>
+<ul>
+<li>Based on the user query like hi/hello/thank you/chit chat, etc. Generic query goes to <code>generic query responder tool</code></li>
+<li>How many schema are present goes to <code>schema searcher tool</code> and</li>
+<li>Data query as last week sales are go the <code>Meta data retreiver tool</code></li>
+</ul>
+</section>
+<section id="meta-data-retreiver-as-tool" class="level3">
+<h3 class="anchored" data-anchor-id="meta-data-retreiver-as-tool">Meta data Retreiver as tool</h3>
+<p>We create a embedding for the names and more importantly detailed description of every table column in one vector database. When the user ask the question we create the embedding of that question and perform the vector search to find the top k similiar table and column description. Only this small relevant schema is passed to the SQL Generation prompt this improves the accuracy.</p>
+</section>
+<section id="sql-generator-and-validator" class="level3">
+<h3 class="anchored" data-anchor-id="sql-generator-and-validator">SQL Generator and validator</h3>
+<p>After SQL Generator passed to SQl validator very important for the production. Before executor must pass through the validator Check the generatod SQL against list of dangerous keyword(Drop, delete, update, etc,) and also make sure it not acesss unauthorized table.</p>
+<p>Use <code>explain</code> command to analze the query plan if the plan involves full table scan or massive table or has an estimated high cost, put that in the human in the loop or reject it.</p>
+</section>
+<section id="expert-insight" class="level3">
+<h3 class="anchored" data-anchor-id="expert-insight">Expert insight</h3>
+<p>Feedback loop how you perfect it</p>
+<p><strong>Benovalant Dictator</strong>: Every time user indicates negative signal pass it to data analyst/ SQL query Admin correctly it manaually and trace it . this this golden data for future training &amp; optimization of the current system.</p>
+</section>
+</section>
+<section id="low-level-design" class="level2">
+<h2 class="anchored" data-anchor-id="low-level-design">Low Level Design</h2>
+<section id="query-classification-and-metadata-retreival" class="level3">
+<h3 class="anchored" data-anchor-id="query-classification-and-metadata-retreival">Query Classification and metadata retreival</h3>
+<ul>
+<li>Classified query + intent classification via structured pydantic output(few shot + business glosarry).</li>
+<li><strong>Scheme Retreivel</strong>: Embed scheme as document(tablename + column + sample rows + description of schema)</li>
+<li>Hybrid Search(keyword + BM25, cosine similiarity), graph for joins</li>
+<li>top k tables and column to avoid bloat</li>
+<li>cache embedding</li>
+</ul>
+</section>
+<section id="sql-generation-and-validation" class="level3">
+<h3 class="anchored" data-anchor-id="sql-generation-and-validation">SQL Generation and validation</h3>
+<ul>
+<li>Validator + guard (SQL GLot) - &gt; check for dangerous operation delete, update, etc</li>
+<li>LLM As Judge or rule based limits, PII Filters</li>
+<li>Dry run with sample data</li>
+</ul>
+<p><strong>Execution</strong></p>
+<ul>
+<li>Parametrized execution(No string concatination)</li>
+<li>timeouts, row limit, read only connection</li>
+<li>return result along with metadata</li>
+</ul>
+<p><strong>Corrector</strong></p>
+<ul>
+<li>Self refinement Loop -if error or empty loop</li>
+<li>feed error + original sql back to generator</li>
+<li>Conditional edge max 3-4 retries</li>
+<li>Exponential back off</li>
+</ul>
+</section>
+<section id="orchestration-and-frame-work" class="level3">
+<h3 class="anchored" data-anchor-id="orchestration-and-frame-work">Orchestration and frame work</h3>
+<ul>
+<li>Langchain/Langgraph/ Pydatic AI/ Smolagent/Crew ai</li>
+<li>For statefull graph / Human in the loop</li>
+<li>Langchain/ Langgraph/ crew AI/ SQL ALchemy/ Vector Store - Milvus, pipnecone/chroma db, etc</li>
+<li>API / FastAPI (Read only replicas)</li>
+</ul>
+</section>
+<section id="explain-and-answer" class="level3">
+<h3 class="anchored" data-anchor-id="explain-and-answer">Explain and answer</h3>
+<ul>
+<li>Natural language summay + visualization(Next level)</li>
+</ul>
+</section>
+<section id="prompt-engineering-best-practice" class="level3">
+<h3 class="anchored" data-anchor-id="prompt-engineering-best-practice">Prompt Engineering best practice</h3>
+<ul>
+<li>System prompt with role and constrains + dailects</li>
+<li>few shot prompt with chain of thoughts</li>
+<li>structured output(pydantic output parser)</li>
+<li>self critique refinement) - Memory - short time session</li>
+<li>prompt includes rewritten query + relevent schemas + few shot example + plan + dialect + specific rules with Structured output</li>
+</ul>
+</section>
+<section id="mixed-llm" class="level3">
+<h3 class="anchored" data-anchor-id="mixed-llm">Mixed LLM</h3>
+<p>Use LLM based on the task- for example intent classification often require smaller model such as GPT 4o-mini, haiku, etc for complex task such as higher model LLAMA 4, GPT 5, Qwen 3.5, Grok 4, Claude Opus 4.5 + ,etc</p>
+</section>
+<section id="evaluation" class="level3">
+<h3 class="anchored" data-anchor-id="evaluation">Evaluation</h3>
+<ul>
+<li>Using Spider and Bird as the benchmark for text to Sql Validation.</li>
+<li>Validating against different model.</li>
+<li>Negative signals are capture with MLflow / Langsmith, etc used for golden dataset</li>
+</ul>
+</section>
+<section id="deployment" class="level3">
+<h3 class="anchored" data-anchor-id="deployment">Deployment</h3>
+<p>Docker and kubernetes</p>
 
 
+</section>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
