@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Mukesh">
-<meta name="dcterms.date" content="2025-08-11">
+<meta name="dcterms.date" content="2026-04-06">
 
-<title>Docker’s Basics – dataSherlock</title>
+<title>Natural language to SQL in Production – dataSherlock</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -24,41 +24,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -154,14 +119,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Docker’s Basics</h1>
+      <h1 class="title">Natural language to SQL in Production</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">Containers</div>
+                <div class="quarto-category">Architecture</div>
                 <div class="quarto-category">Dev</div>
-                <div class="quarto-category">Image</div>
-                <div class="quarto-category">Orchestration</div>
-                <div class="quarto-category">Code</div>
-                <div class="quarto-category">Devops</div>
+                <div class="quarto-category">data</div>
+                <div class="quarto-category">text_sql</div>
+                <div class="quarto-category">Design</div>
+                <div class="quarto-category">HLD</div>
+                <div class="quarto-category">LLD</div>
               </div>
                   </div>
   </div>
@@ -179,7 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">August 11, 2025</p>
+        <p class="date">April 6, 2026</p>
       </div>
     </div>
     
@@ -198,242 +164,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="dockers-basics" class="level1">
-<h1>Docker’s basics</h1>
-<p>There’s a ton of Docker material out there — blogs, videos, GPTs, LLMs, etc. I’m going to share <strong>my personal take</strong> on Docker, why it exists, and the bare essentials you need to actually get started without drowning in jargon.</p>
-<section id="the-birth-of-docker" class="level2">
-<h2 class="anchored" data-anchor-id="the-birth-of-docker">The Birth of Docker</h2>
-<p>Put simply: <strong>Docker lets you run multiple “computers” inside your computer</strong>.</p>
-<p>Virtual machines (VMs) do this too — but they are <em>heavy</em>, slow to start, and come with a lot of extra baggage (full OS per VM). Docker, on the other hand:</p>
-<ul>
-<li><strong>Lightweight</strong> — Shares the host system’s kernel instead of carrying an entire OS.</li>
-<li><strong>Isolated environments</strong> — No dependency conflicts between projects.</li>
-<li><strong>Portable</strong> — Package your app, send it to someone, and it’ll run exactly the same on their machine.</li>
-<li><strong>Easy setup</strong> — No “works on my machine” drama.</li>
-<li><strong>Cloud-ready</strong> — Combine it with Docker Hub or GitHub to share pre-built environments instantly.</li>
-</ul>
-<p>Think of Docker as:</p>
-<blockquote class="blockquote">
-<p>“A way to give each project its own little private playground… without wasting memory or time.”</p>
-</blockquote>
-</section>
-<section id="docker-jargon" class="level2">
-<h2 class="anchored" data-anchor-id="docker-jargon">Docker Jargon</h2>
-<p>Docker’s world is full of big scary words. Let’s shrink them down.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 14%">
-<col style="width: 39%">
-<col style="width: 45%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Term</th>
-<th>What It Is</th>
-<th>Fun Analogy</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Image</strong></td>
-<td>Read-only template for your app.</td>
-<td>The <em>recipe</em> for baking a cake.</td>
-</tr>
-<tr class="even">
-<td><strong>Container</strong></td>
-<td>A running instance of an image.</td>
-<td>The <em>cake</em> itself.</td>
-</tr>
-<tr class="odd">
-<td><strong>Volume</strong></td>
-<td>Storage space your container can use.</td>
-<td>The <em>fridge</em> where you keep cake leftovers.</td>
-</tr>
-<tr class="even">
-<td><strong>Dockerfile</strong></td>
-<td>Instructions to build your own image.</td>
-<td>The <em>handwritten recipe card</em>.</td>
-</tr>
-<tr class="odd">
-<td><strong>Network</strong></td>
-<td>Lets containers talk to each other.</td>
-<td>A <em>walkie-talkie</em> for cakes (ok, this analogy broke).</td>
-</tr>
-<tr class="even">
-<td><strong>Docker Compose</strong></td>
-<td>A YAML file to run multiple containers together.</td>
-<td>The <em>wedding planner</em> coordinating all cakes and guests.</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="docker-hub" class="level2">
-<h2 class="anchored" data-anchor-id="docker-hub">Docker Hub</h2>
-<p>Software providers like PostgreSQL, MySQL, Python, and Ubuntu have already <strong>containerized their applications</strong> and put them on Docker Hub.</p>
-<p>You just pull them down, like:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull postgres:15</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull python:3.9</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>It’s like saying:</p>
-<blockquote class="blockquote">
-<p>“Hey, I’d like the ready-made cake recipe, version 3.9, please.”</p>
-</blockquote>
-</section>
-<section id="docker-commands-youll-actually-use" class="level2">
-<h2 class="anchored" data-anchor-id="docker-commands-youll-actually-use">Docker Commands You’ll Actually Use</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 39%">
-<col style="width: 60%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Command</th>
-<th>What It Does</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>docker pull &lt;image&gt;</code></td>
-<td>Download an image from Docker Hub.</td>
-</tr>
-<tr class="even">
-<td><code>docker build -t &lt;name&gt; .</code></td>
-<td>Build an image from a Dockerfile.</td>
-</tr>
-<tr class="odd">
-<td><code>docker run &lt;image&gt;</code></td>
-<td>Run a container from an image.</td>
-</tr>
-<tr class="even">
-<td><code>docker run -d &lt;image&gt;</code></td>
-<td>Run a container in detached (background) mode.</td>
-</tr>
-<tr class="odd">
-<td><code>docker run -p 8000:8000 &lt;image&gt;</code></td>
-<td>Map host port to container port.</td>
-</tr>
-<tr class="even">
-<td><code>docker ps</code></td>
-<td>List running containers.</td>
-</tr>
-<tr class="odd">
-<td><code>docker ps -a</code></td>
-<td>List <strong>all</strong> containers (including stopped ones).</td>
-</tr>
-<tr class="even">
-<td><code>docker stop &lt;id&gt;</code></td>
-<td>Stop a running container.</td>
-</tr>
-<tr class="odd">
-<td><code>docker start &lt;id&gt;</code></td>
-<td>Start a stopped container.</td>
-</tr>
-<tr class="even">
-<td><code>docker restart &lt;id&gt;</code></td>
-<td>Restart a container.</td>
-</tr>
-<tr class="odd">
-<td><code>docker exec -it &lt;id&gt; bash</code></td>
-<td>Open a shell inside a running container.</td>
-</tr>
-<tr class="even">
-<td><code>docker logs &lt;id&gt;</code></td>
-<td>View logs of a container.</td>
-</tr>
-<tr class="odd">
-<td><code>docker rm &lt;id&gt;</code></td>
-<td>Remove a stopped container.</td>
-</tr>
-<tr class="even">
-<td><code>docker rm -f &lt;id&gt;</code></td>
-<td>Force remove a running container.</td>
-</tr>
-<tr class="odd">
-<td><code>docker rmi &lt;image&gt;</code></td>
-<td>Remove an image.</td>
-</tr>
-<tr class="even">
-<td><code>docker images</code></td>
-<td>List all images on your system.</td>
-</tr>
-<tr class="odd">
-<td><code>docker volume ls</code></td>
-<td>List all Docker volumes.</td>
-</tr>
-<tr class="even">
-<td><code>docker network ls</code></td>
-<td>List Docker networks.</td>
-</tr>
-<tr class="odd">
-<td><code>docker inspect &lt;id&gt;</code></td>
-<td>Show detailed info about a container or image.</td>
-</tr>
-<tr class="even">
-<td><code>docker compose up</code></td>
-<td>Start services defined in <code>docker-compose.yml</code>.</td>
-</tr>
-<tr class="odd">
-<td><code>docker compose up --build</code></td>
-<td>Rebuild images before starting.</td>
-</tr>
-<tr class="even">
-<td><code>docker compose down</code></td>
-<td>Stop and remove services from <code>docker-compose.yml</code>.</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="cleanup-commands-your-sanity-savers" class="level2">
-<h2 class="anchored" data-anchor-id="cleanup-commands-your-sanity-savers">Cleanup Commands (Your Sanity Savers)</h2>
-<p>Sometimes you just want a clean slate:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> container prune      <span class="co"># Remove all stopped containers</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> image prune          <span class="co"># Remove unused images</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> volume prune         <span class="co"># Remove unused volumes</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> network prune        <span class="co"># Remove unused networks</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> system prune         <span class="co"># Remove all unused containers, images, volumes, networks</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> system prune <span class="at">-a</span>      <span class="co"># Remove everything, including unused images</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Caution</strong>: <code>docker system prune -a</code> is like pressing the “nuke” button — it will delete <strong>all</strong> images and containers not currently running.</p>
-<p>If you like, I can <strong>merge this full command cheat sheet into your Docker blog post</strong> so it becomes a one-stop beginner + reference guide. That way, you don’t have to maintain two separate docs.</p>
-</section>
-<section id="a-simple-fastapi-dockerfile" class="level2">
-<h2 class="anchored" data-anchor-id="a-simple-fastapi-dockerfile">A Simple FastAPI Dockerfile</h2>
-<p>Here’s a minimal example for a FastAPI app:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> python:3.9</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /code</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> ./requirements.txt /code/requirements.txt</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">pip</span> install <span class="at">--no-cache-dir</span> <span class="at">--upgrade</span> <span class="at">-r</span> /code/requirements.txt</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> ./app /code/app</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"fastapi"</span>, <span class="st">"run"</span>, <span class="st">"app/main.py"</span>, <span class="st">"--port"</span>, <span class="st">"80"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="breaking-it-down" class="level2">
-<h2 class="anchored" data-anchor-id="breaking-it-down">Breaking It Down:</h2>
-<ul>
-<li><strong>FROM</strong> — The base image (Python 3.9). Think: “Start with a ready kitchen.”</li>
-<li><strong>WORKDIR</strong> — Where commands will run inside the container.</li>
-<li><strong>COPY</strong> — Move files from your computer into the image.</li>
-<li><strong>RUN</strong> — Execute commands when building the image (install dependencies).</li>
-<li><strong>CMD</strong> — The default command to run when the container starts.</li>
-</ul>
-</section>
-<section id="cmd-vs-entrypoint-whats-the-difference" class="level2">
-<h2 class="anchored" data-anchor-id="cmd-vs-entrypoint-whats-the-difference">CMD vs ENTRYPOINT — What’s the Difference?</h2>
-<ul>
-<li><strong>ENTRYPOINT</strong> → The fixed part of the command that will <em>always</em> run.</li>
-<li><strong>CMD</strong> → The part you can override when running the container.</li>
-</ul>
-<p>Think of ENTRYPOINT as the <em>cake base</em> (always needed), and CMD as the <em>flavor</em> (you can swap chocolate for vanilla).</p>
-</section>
-<section id="final-thoughts" class="level2">
-<h2 class="anchored" data-anchor-id="final-thoughts">Final Thoughts</h2>
-<p>Docker isn’t magic — it’s just a smart way to package and run software so it’s consistent everywhere. Once you get the basic terms down and try a few builds yourself, you’ll wonder how you ever shipped apps without it. If you still dig deep You know docker compose which is much effient way to orchestrate multiple docker in a streamlined way.</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
